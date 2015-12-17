@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="/styles/toastr.min.css">
     <link rel="stylesheet" href="/styles/twitterBootstrap.css">
     <!--STYLES END-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
 
   <body>
@@ -62,7 +63,7 @@
     -->
 
     <!--TEMPLATES-->
-    
+
     <!--TEMPLATES END-->
 
 
@@ -99,12 +100,13 @@
       if ( msg.payload.build.status == 'testing'){
         var bigString = [
             '<div id='+msg.payload.build.short_commit_id+' class="alert alert-info" role="alert">',
-            ' <span>Hi there!</span>',
+            ' <i class="fa fa-spinner fa-pulse"></i>&nbsp;<span><b>'+msg.payload.build.committer+'</b></span>&nbsp;<span>'+msg.payload.build.message+'</span>',
             '</div>'
         ];
         $('#alert-container').append(bigString.join(''));
       } else if ( msg.payload.build.status == 'success'){
         $('#'+msg.payload.build.short_commit_id+'').removeClass('alert-info').addClass('alert-success');
+        $('#'+msg.payload.build.short_commit_id+' .fa-spinner').replaceWith('<i class="fa fa-check"></i>');
       }
       console.log(msg);
       var id = msg.payload.build.short_commit_id;
