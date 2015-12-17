@@ -96,7 +96,19 @@
     <!--SCRIPTS END-->
     <script>
     io.socket.on('message', function onServerSentEvent (msg) {
+      if ( msg.payload.build.status == 'testing'){
+        var bigString = [
+            '<div id='+msg.payload.build.short_commit_id+' class="alert alert-info" role="alert">',
+            ' <span>Hi there!</span>',
+            '</div>'
+        ];
+        $('#alert-container').append(bigString.join(''));
+      } else if ( msg.payload.build.status == 'success'){
+        $('#'+msg.payload.build.short_commit_id+'').removeClass('alert-info').addClass('alert-success');
+      }
       console.log(msg);
+      var id = msg.payload.build.short_commit_id;
+      var committer = msg.payload.build.committer;
     });
     </script>
   </body>
