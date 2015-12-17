@@ -8,8 +8,10 @@
 module.exports = {
 
 	'status': function(req,res,next){
-		console.log('hit...');
-		return res.send({'message':'thanks for the info codeship.'});
+		console.log('codeship/status hit.');
+		console.log(req);
+		sails.sockets.blast('message',{ message: 'message from codeship' });
+		return res.ok();
 	}
 
 };
