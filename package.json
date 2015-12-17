@@ -28,10 +28,10 @@
   "description": "a Sails application",
   "keywords": [],
   "scripts": {
-    "debug": "node debug app.js",
-    "start": "node app.js"
+    "debug": "node debug server.js",
+    "start": "node server.js --prod"
   },
-  "main": "app.js",
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/treyschneider/webhooker.git"
